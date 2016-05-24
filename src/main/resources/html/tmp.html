@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<html>
+<head>
+<script type="text/javascript" src="./resources/angular/angular.js"></script>
+<script type="text/javascript" src="./resources/jquery/dist/jquery.js"></script>
+<link type="text/css" rel="stylesheet" href="./resources/bootstrap/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="./resources/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="./resources/angular-sanitize/angular-sanitize.js"></script>
+
+<script type="text/javascript" src="./resources/tv4/tv4.js"></script>
+<script type="text/javascript" src="./resources/objectpath/lib/ObjectPath.js"></script>
+
+<script type="text/javascript" src="./resources/angular-schema-form/dist/schema-form.js"></script>
+<script type="text/javascript" src="./resources/angular-schema-form/dist/bootstrap-decorator.js"></script>
+<script type="text/javascript" src="./resources/angular-schema-form-datepicker/bootstrap-datepicker.js"></script>
+<script type="text/javascript"> 
+
+var app = angular.module('myModule', ['schemaForm']);
+
+app.controller('FormController', function($scope, $http) {
+/*
+    $http.get('./crp_schema.json').then(function(response){
+    	$scope.schema = response.data;
+    });
+*/
+$scope.schema = 
+{
+    "type": "object",
+    "title": "Comment",
+    "properties": {
+        "test" : {
+            "type" : "object",
+            "title" : "Test",
+            "properties" : {
+                "contactDetails": {
+                    "title": "Contact Person",
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "contactType": {
+                                "title": "Contact Type",
+                                "description": "Select",
+                                "type": "string",
+                                "default": "test",
+                                "enum": ["test", "test1"]
+                            },
+                            "contactName" : {
+                                "title" : "Contact Name",
+                                "type" : "string"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+};
+/*
+    $http.get('./crp_form_001.json').then(function(response){
+    	$scope.form = response.data;
+    });
+*/
+$scope.form = 
+[
+    {
+        "type" : "tabs",
+        "tabs" : [
+            {
+                "title" : "My Tab",
+                "items" : [
+                    {
+                        "type": "array",
+                        "add" : "New",
+                        "key": "test.contactDetails",
+                        "items": [
+                            "test.contactDetails[].contactType",
+                            "test.contactDetails[].contactName"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title" : "My Tab 2",
+                "items" : []
+            }
+        ]
+    },
+    {
+        "type": "submit",
+        "style": "btn-info",
+        "title": "OK"
+    }
+];
+
+    //$scope.form = ["*"];
+
+$scope.model = {"test" : {"contactDetails" : [{"contactType" : ""}, {"contactName" : ""}] }};
+
+//    $http.get('./crp_model.json').then(function(response){
+//    	$scope.model = response.data;
+//    });
+});
+</script>
+</head>
+<body>
+<div ng-app="myModule" ng-controller="FormController">
+    <div class="container">
+        <form>
+            <div sf-schema="schema" sf-form="form" sf-model="model"></div>
+            <input type="button" ng-click="submit()" value="Submit"></input>
+        </form>
+    </div>
+    <hr/>
+    MODEL=[{{model}}]
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+[
+  {
+      "type" : "tabs",
+      "tabs" : [
+          {
+              "title" : "Submission Admin",
+              "items" : [
+                  "contractSubmissionAdmin"
+              ]
+          },
+          {
+              "title" : "Reporting Plan",
+              "items" : [
+                  "contractReportingPlan"
+              ]
+          },
+          {
+              "title" : "Supplier",
+              "items" : [
+                  "contractSupplier"
+              ]
+          },
+          {
+              "title" : "Contract",
+              "items" : [
+                  "contractContract"
+              ]
+          },
+          {
+              "title" : "DPS Input",
+              "items" : [
+                  {
+                      "type" : "array",
+                      "key" : "contractDpsInput.dpsInput",
+                      "items" : [
+                          "contractDpsInput.dpsInput[].dpsCode"
+                      ]
+                  }
+              ]
+          },          
+          {
+              "title" : "Metrics",        
+              "items" : [
+                  "contractMetrics"
+              ]
+          },
+          {
+              "title" : "Price",
+              "items" : [
+                  "contractPrice"
+              ]
+          }
+      ]
+  }
+]

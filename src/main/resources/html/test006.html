@@ -1,0 +1,599 @@
+<!DOCTYPE HTML>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<html>
+<head>
+<script type="text/javascript" src="./resources/angular/angular.min.js"></script>
+<script type="text/javascript" src="./resources/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="./resources/tv4/tv4.js"></script>
+<script type="text/javascript" src="./resources/objectpath/lib/ObjectPath.js"></script>
+
+<script type="text/javascript" src="./resources/jquery/dist/jquery.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="./resources/bootstrap/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="./resources/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="./resources/angular-schema-form/dist/schema-form.min.js"></script>
+<script type="text/javascript" src="./resources/angular-schema-form/dist/bootstrap-decorator.min.js"></script>
+<script type="text/javascript" src="./resources/angular-schema-form-datepicker/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript"> 
+
+var app = angular.module('myModule', ['schemaForm']);
+
+app.controller('FormController', function($scope) {
+  $scope.schema = 
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:ContractReportingPlan",
+  "properties" : {
+    "id" : {
+      "type" : "integer"
+    },
+    "reportId" : {
+      "type" : "integer"
+    },
+    "contractSubmissionAdmin" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract01_SubmissionAdmin",
+      "properties" : {
+        "requiredByDate" : {
+          "type" : "integer",
+          "format" : "utc-millisec"
+        },
+        "requiredByComment" : {
+          "type" : "string"
+        },
+        "submittedDate" : {
+          "type" : "integer",
+          "format" : "utc-millisec"
+        },
+        "submittedComment" : {
+          "type" : "string"
+        },
+        "submittedByName" : {
+          "type" : "string"
+        },
+        "submittedByPosition" : {
+          "type" : "string"
+        },
+        "submittedByTelephone" : {
+          "type" : "string"
+        },
+        "submittedByEmail" : {
+          "type" : "string"
+        },
+        "complianceContactName" : {
+          "type" : "string"
+        },
+        "complianceContactPosition" : {
+          "type" : "string"
+        },
+        "complianceContactTelephone" : {
+          "type" : "string"
+        },
+        "complianceContactEmail" : {
+          "type" : "string"
+        },
+        "modContactName" : {
+          "type" : "string"
+        },
+        "modContactPosition" : {
+          "type" : "string"
+        },
+        "modContactTelephone" : {
+          "type" : "string"
+        },
+        "modContactEmail" : {
+          "type" : "string"
+        },
+        "submissionAdminComment" : {
+          "type" : "string"
+        }
+      }
+    },
+    "contractReportingPlan" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract02_ReportingPlan",
+      "properties" : {
+        "contractStartDate" : {
+          "type" : "integer",
+          "format" : "utc-millisec"
+        },
+        "contractEndDate" : {
+          "type" : "integer",
+          "format" : "utc-millisec"
+        },
+        "contractValue" : {
+          "type" : "number"
+        },
+        "agreedDates" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract02_ReportingPlanAgreedDates",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "reportPeriod" : {
+                "type" : "string"
+              },
+              "icrDueDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              },
+              "icrSubmitDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              },
+              "crpDueDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              },
+              "crpSubmitDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              },
+              "cpsDueDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              },
+              "cpsSubmitDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              },
+              "ccsDueDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              },
+              "ccsSubmitDate" : {
+                "type" : "integer",
+                "format" : "utc-millisec"
+              }
+            }
+          }
+        }
+      }
+    },
+    "contractSupplier" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract03_Supplier",
+      "properties" : {
+        "contractCompanyName" : {
+          "type" : "string"
+        },
+        "contractCompanyRegNumber" : {
+          "type" : "string"
+        },
+        "contractCompanyTradeName" : {
+          "type" : "string"
+        },
+        "contractCompanyAddrLine1" : {
+          "type" : "string"
+        },
+        "contractCompanyAddrLine2" : {
+          "type" : "string"
+        },
+        "contractCompanyAddrLine3" : {
+          "type" : "string"
+        },
+        "contractCompanyAddrCountry" : {
+          "type" : "string"
+        },
+        "contractCompanyAddrPostcode" : {
+          "type" : "string"
+        },
+        "ukSmeClassification" : {
+          "type" : "string"
+        },
+        "latestFinancialYear" : {
+          "type" : "integer",
+          "format" : "utc-millisec"
+        },
+        "parentCompanyName1" : {
+          "type" : "string"
+        },
+        "parentCompanyRegNumber1" : {
+          "type" : "string"
+        },
+        "parentCompanyAddress1" : {
+          "type" : "string"
+        },
+        "parentCompanyName2" : {
+          "type" : "string"
+        },
+        "parentCompanyRegNumber2" : {
+          "type" : "string"
+        },
+        "parentCompanyAddress2" : {
+          "type" : "string"
+        },
+        "parentCompanyName3" : {
+          "type" : "string"
+        },
+        "parentCompanyRegNumber3" : {
+          "type" : "string"
+        },
+        "parentCompanyAddress3" : {
+          "type" : "string"
+        },
+        "supplierInformation" : {
+          "type" : "string"
+        }
+      }
+    },
+    "contractContract" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract04_Contract",
+      "properties" : {
+        "contractTitle" : {
+          "type" : "string"
+        },
+        "contractDescription" : {
+          "type" : "string"
+        },
+        "contractorUniqueRefNumber" : {
+          "type" : "string"
+        },
+        "modUniqueRefNumber" : {
+          "type" : "string"
+        },
+        "latestPriceAmendmentDateSigned" : {
+          "type" : "integer",
+          "format" : "utc-millisec"
+        },
+        "latestPriceAmmendmentContractorRefId" : {
+          "type" : "string"
+        },
+        "latestPriceAmmendmentModRefId" : {
+          "type" : "string"
+        },
+        "firmPriceGbp" : {
+          "type" : "number"
+        },
+        "firmPriceUsd" : {
+          "type" : "number"
+        },
+        "firmPriceEur" : {
+          "type" : "number"
+        },
+        "fixedPriceGbp" : {
+          "type" : "number"
+        },
+        "fixedPriceUsd" : {
+          "type" : "number"
+        },
+        "fixedPriceEur" : {
+          "type" : "number"
+        },
+        "costPlusPriceGbp" : {
+          "type" : "number"
+        },
+        "costPlusPriceUsd" : {
+          "type" : "number"
+        },
+        "costPlusPriceEur" : {
+          "type" : "number"
+        },
+        "estimateBaseFeePriceGbp" : {
+          "type" : "number"
+        },
+        "estimateBaseFeePriceUsd" : {
+          "type" : "number"
+        },
+        "estimateBaseFeePriceEur" : {
+          "type" : "number"
+        },
+        "volumeDrivenPriceGbp" : {
+          "type" : "number"
+        },
+        "volumeDrivenPriceUsd" : {
+          "type" : "number"
+        },
+        "volumeDrivenPriceEur" : {
+          "type" : "number"
+        },
+        "targetPriceGbp" : {
+          "type" : "number"
+        },
+        "targetPriceUsd" : {
+          "type" : "number"
+        },
+        "targetPriceEur" : {
+          "type" : "number"
+        },
+        "totalPriceGbp" : {
+          "type" : "number"
+        },
+        "totalPriceUsd" : {
+          "type" : "number"
+        },
+        "totalPriceEur" : {
+          "type" : "number"
+        },
+        "businessUnit1" : {
+          "type" : "string"
+        },
+        "businessUnit2" : {
+          "type" : "string"
+        },
+        "businessUnit3" : {
+          "type" : "string"
+        },
+        "businessUnit4" : {
+          "type" : "string"
+        },
+        "businessUnit5" : {
+          "type" : "string"
+        }
+      }
+    },
+    "contractDpsInput" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract05_DpsInput",
+      "properties" : {
+        "dpsInput" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract05_DpsInputData",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "dpsCode" : {
+                "type" : "string"
+              },
+              "dpsElementDescription" : {
+                "type" : "string"
+              },
+              "dataInputLine" : {
+                "type" : "boolean"
+              },
+              "empty" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "contractMetrics" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract07_Metrics",
+      "properties" : {
+        "metrics" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract07_MetricsData",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "dpsCode" : {
+                "type" : "string"
+              },
+              "relatedDpsDesc" : {
+                "type" : "string"
+              },
+              "parameter" : {
+                "type" : "string"
+              },
+              "definition" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "string"
+              },
+              "units" : {
+                "type" : "string"
+              },
+              "empty" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        }
+      }
+    },
+    "contractPrice" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract08_Price",
+      "properties" : {
+        "priceSummaryAnalyis" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract08_PriceData_01SummaryAnalysis",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "reportPeriod" : {
+                "type" : "string"
+              },
+              "subtotalPlannedCost" : {
+                "type" : "number"
+              },
+              "riskContingencyAllowance" : {
+                "type" : "number"
+              },
+              "subtotalCost" : {
+                "type" : "number"
+              },
+              "profit" : {
+                "type" : "number"
+              },
+              "totalContractPriceExc" : {
+                "type" : "number"
+              },
+              "additionalProfit" : {
+                "type" : "number"
+              },
+              "totalContractPriceInc" : {
+                "type" : "number"
+              },
+              "empty" : {
+                "type" : "boolean"
+              }
+            }
+          }
+        },
+        "priceSummaryAnalyisComment" : {
+          "type" : "string"
+        },
+        "priceDefStructCalculated" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract08_PriceData_02aDefStructCalculated",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "reportPeriod" : {
+                "type" : "string"
+              },
+              "dpsCode" : {
+                "type" : "string"
+              },
+              "dpsDescription" : {
+                "type" : "string"
+              },
+              "dpsLevel" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          }
+        },
+        "priceDefStructCalculatedComment" : {
+          "type" : "string"
+        },
+        "priceDefStructEntered" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract08_PriceData_02bDefStructEntered",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "reportPeriod" : {
+                "type" : "string"
+              },
+              "dpsCode" : {
+                "type" : "string"
+              },
+              "dpsDescription" : {
+                "type" : "string"
+              },
+              "dpsLevel" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          }
+        },
+        "priceDefStructEnteredComment" : {
+          "type" : "string"
+        },
+        "priceCostBySupplier" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract08_PriceData_02CostBySupplier",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "reportPeriod" : {
+                "type" : "string"
+              },
+              "code" : {
+                "type" : "string"
+              },
+              "description" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          }
+        },
+        "priceCostBySupplierComment" : {
+          "type" : "string"
+        },
+        "priceRecoveryBaseVolume" : {
+          "type" : "array",
+          "items" : {
+            "type" : "object",
+            "id" : "urn:jsonschema:uk:gov:ssro:db:entity:report:worksheet:contract:v20:Contract08_PriceData_03RecoveryBaseVolume",
+            "properties" : {
+              "id" : {
+                "type" : "integer"
+              },
+              "reportPeriod" : {
+                "type" : "string"
+              },
+              "code" : {
+                "type" : "string"
+              },
+              "description" : {
+                "type" : "string"
+              },
+              "units" : {
+                "type" : "string"
+              },
+              "value" : {
+                "type" : "number"
+              }
+            }
+          }
+        },
+        "priceRecoveryBaseVolumeComment" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}
+
+;
+
+  $scope.form = [
+      {
+          "type" : "tabs",
+          "tabs" : [
+              {
+                  "title" : "tab01",
+                  "items" : [
+                      "contractPrice"
+                  ]
+              }
+          ]
+      }
+  ];
+
+  $scope.model = {};
+});
+</script>
+</head>
+<body>
+<div ng-app="myModule" ng-controller="FormController">
+    <div class="container">
+        <form>
+            <div sf-schema="schema" sf-form="form" sf-model="model"></div>
+            <input type="button" ng-click="submit()" value="Submit"></input>
+        </form>
+    </div>
+    <hr/>
+    MODEL=[{{model}}]
+</div>
+</body>
+</html>

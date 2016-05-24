@@ -1,0 +1,10 @@
+[
+    {
+        "key" : "contractDpsInput.dpsInput",
+        "add" : "New",
+        "type" : "array",
+        "items" : [
+            "contractDpsInput.dpsInput[].dpsCode"
+        ]
+    }
+]

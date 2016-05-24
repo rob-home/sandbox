@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<?xml version="1.0" encoding="iso-8859-1"?>
+<html>
+<head>
+<script type="text/javascript" src="./resources/angular/angular.min.js"></script>
+<script type="text/javascript" src="./resources/angular-sanitize/angular-sanitize.min.js"></script>
+<script type="text/javascript" src="./resources/tv4/tv4.js"></script>
+<script type="text/javascript" src="./resources/objectpath/lib/ObjectPath.js"></script>
+
+<script type="text/javascript" src="./resources/jquery/dist/jquery.min.js"></script>
+
+<link type="text/css" rel="stylesheet" href="./resources/bootstrap/dist/css/bootstrap.min.css">
+<script type="text/javascript" src="./resources/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="./resources/angular-schema-form/dist/schema-form.min.js"></script>
+<script type="text/javascript" src="./resources/angular-schema-form/dist/bootstrap-decorator.min.js"></script>
+<script type="text/javascript" src="./resources/angular-schema-form-datepicker/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript"> 
+
+var app = angular.module('myModule', ['schemaForm']);
+
+app.controller('FormController', function($scope) {
+  $scope.schema = 
+{
+  "type" : "object",
+  "id" : "urn:jsonschema:uk:gov:ssro:defcars2:db:entity:Contract",
+  "description" : "Contact address for the contract",
+  "title" : "Contract Address",
+  "properties" : {
+    "contractTitle" : {
+      "type" : "string",
+      "description" : "A meaningfult title for the contract",
+      "title" : "Contract Title",
+      "maxLength" : 256
+    },
+    "contractId" : {
+      "type" : "string",
+      "description" : "This contract id",
+      "title" : "Contract ID",
+      "pattern" : "^\\d+$"
+    },
+    "startDate" : {
+      "type" : "string",
+      "title" : "Contract Start Date",
+      "format" : "date-time"
+    },
+    "contractAddress" : {
+      "type" : "object",
+      "id" : "urn:jsonschema:uk:gov:ssro:defcars2:db:entity:Address",
+      "description" : "Contact address for the contract",
+      "title" : "Contract Address",
+      "properties" : {
+        "line1" : {
+          "type" : "string",
+          "title" : "Address Line 1",
+          "maxLength" : 256
+        },
+        "line2" : {
+          "type" : "string",
+          "title" : "Address Line 2",
+          "maxLength" : 256
+        },
+        "line3" : {
+          "type" : "string",
+          "title" : "Address Line 3",
+          "maxLength" : 256
+        },
+        "line4" : {
+          "type" : "string",
+          "title" : "Address Line 4",
+          "maxLength" : 256
+        },
+        "city" : {
+          "type" : "string",
+          "title" : "Town/City",
+          "maxLength" : 256
+        },
+        "postcode" : {
+          "type" : "string",
+          "title" : "Postcode",
+          "maxLength" : 256
+        },
+        "country" : {
+          "type" : "string",
+          "title" : "Country",
+          "maxLength" : 256
+        }
+      }
+    },
+    "test" : {
+      "type" : "array",
+      "title" : "Test",
+      "items" : {
+        "type" : "object",
+        "id" : "urn:jsonschema:uk:gov:ssro:defcars2:db:entity:Address",
+        "properties" : {
+          "line1" : {
+            "type" : "string",
+            "title" : "Address Line 1",
+            "maxLength" : 256
+          },
+          "line2" : {
+            "type" : "string",
+            "title" : "Address Line 2",
+            "maxLength" : 256
+          },
+          "line3" : {
+            "type" : "string",
+            "title" : "Address Line 3",
+            "maxLength" : 256
+          },
+          "line4" : {
+            "type" : "string",
+            "title" : "Address Line 4",
+            "maxLength" : 256
+          },
+          "city" : {
+            "type" : "string",
+            "title" : "Town/City",
+            "maxLength" : 256
+          },
+          "postcode" : {
+            "type" : "string",
+            "title" : "Postcode",
+            "maxLength" : 256
+          },
+          "country" : {
+            "type" : "string",
+            "title" : "Country",
+            "maxLength" : 256
+          }
+        }
+      }
+    }
+  }
+}
+;
+
+  $scope.form = [
+    "*"
+  ];
+
+  $scope.model = {};
+});
+</script>
+</head>
+<body>
+<div ng-app="myModule" ng-controller="FormController">
+    <div class="container">
+        <form>
+            <div sf-schema="schema" sf-form="form" sf-model="model"></div>
+            <input type="button" ng-click="submit()" value="Submit"></input>
+        </form>
+    </div>
+    <hr/>
+    MODEL=[{{model}}]
+</div>
+</body>
+</html>
