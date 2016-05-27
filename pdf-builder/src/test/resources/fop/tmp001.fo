@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
+  <fo:layout-master-set>
+    <fo:simple-page-master page-width="20cm" page-height="13cm" master-name="P">
+      <fo:region-body margin="3cm" />
+    </fo:simple-page-master>
+  </fo:layout-master-set>
+  <fo:page-sequence master-reference="P">
+    <fo:flow flow-name="xsl-region-body" font-size="25pt">
+      <fo:table border="solid">
+        <fo:table-column column-width="5cm" />
+        <fo:table-column column-width="6cm" />
+        <fo:table-column column-width="3cm" />
+        <fo:table-header>
+          <fo:table-row>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Colour
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Size
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Price
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+        </fo:table-header>
+        <fo:table-footer>
+              <fo:table-row>
+                <fo:table-cell border="solid" number-columns-spanned="3">
+			          <fo:retrieve-table-marker retrieve-class-name="subtotal" retrieve-position-within-table="last-starting" />
+			          <fo:retrieve-table-marker retrieve-class-name="continued" retrieve-position-within-table="last-starting" />
+                </fo:table-cell>
+              </fo:table-row>
+        </fo:table-footer>
+        <fo:table-body>
+          <fo:table-row>
+            <fo:marker marker-class-name="continued">
+                  <fo:block text-align="right">CONTINUED</fo:block>
+            </fo:marker>
+            <fo:marker marker-class-name="subtotal">
+                  <fo:block text-align="right">SUBTOTAL</fo:block>
+            </fo:marker>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Red
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Square
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                20
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+          <fo:table-row>
+            <fo:marker marker-class-name="continued">
+                  <fo:block text-align="right">CONTINUED</fo:block>
+            </fo:marker>
+            <fo:marker marker-class-name="subtotal">
+                  <fo:block text-align="right">SUBTOTAL</fo:block>
+            </fo:marker>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Blue
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Square
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                25
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+          <fo:table-row>
+            <fo:marker marker-class-name="continued">
+                  <fo:block text-align="right">CONTINUED</fo:block>
+            </fo:marker>
+            <fo:marker marker-class-name="subtotal">
+                  <fo:block text-align="right">SUBTOTAL</fo:block>
+            </fo:marker>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Red
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Triangle
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                23
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+          <fo:table-row>
+            <fo:marker marker-class-name="continued">
+                  <fo:block text-align="right">CONTINUED</fo:block>
+            </fo:marker>
+            <fo:marker marker-class-name="subtotal">
+                  <fo:block text-align="right">SUBTOTAL</fo:block>
+            </fo:marker>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Green
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Square
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                123
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+          <fo:table-row>
+            <fo:marker marker-class-name="continued">
+                  <fo:block text-align="right">CONTINUED</fo:block>
+            </fo:marker>
+            <fo:marker marker-class-name="subtotal">
+                  <fo:block text-align="right">SUBTOTAL</fo:block>
+            </fo:marker>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Black
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Circle
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                25
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+          <fo:table-row>
+            <fo:marker marker-class-name="continued" />
+            <fo:marker marker-class-name="subtotal">
+                  <fo:block text-align="right">SUBTOTAL</fo:block>
+            </fo:marker>
+            <fo:table-cell border="solid">
+              <fo:block>
+                White
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                Elipse
+              </fo:block>
+            </fo:table-cell>
+            <fo:table-cell border="solid">
+              <fo:block>
+                23
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+        </fo:table-body>
+      </fo:table>
+    </fo:flow>
+  </fo:page-sequence>
+</fo:root>
