@@ -7,12 +7,14 @@ import java.util.Map;
 import org.apache.commons.io.FileUtils;
 import org.apache.fop.fonts.apps.TTFReader;
 import org.apache.fop.fonts.truetype.TTFFile;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
-import sandbox.pdfbuilder.fo.FileFoProvider;
-import sandbox.pdfbuilder.fo.FreemarkerFoProvider;
+import sandbox.pdfbuilder.fo.file.FileFoProvider;
+import sandbox.pdfbuilder.fo.freemarker.FreemarkerFoProvider;
 import freemarker.cache.ClassTemplateLoader;
 
 public class TestPdfBuilder
@@ -21,33 +23,37 @@ public class TestPdfBuilder
     @Test
     public void createPdfFromXml() throws Exception
     {
-        byte [] pdf = PdfBuilder.foProvider(FileFoProvider.with().file("src/test/resources/fop/test005.fo")).build();
-        
+        PdfBuilder.foProvider(FileFoProvider.with().file("src/test/resources/fop/test005.fo")).build(FileUtils.openOutputStream(outputFile));
     }
     
     @Test
     public void createPdfFromFreemarker() throws Exception
     {
-        Map<String, String> dictionary = new HashMap();
+        Map<String, String> dictionary = new HashMap<>();
         
         dictionary.put("gdar.general.footerurl", "<a href=\"#\">gov.uk/greendeal</a>");
-        
-        writePdf(PdfBuilder.foProvider(FreemarkerFoProvider.Builder
-                                                           .templateLoader(new ClassTemplateLoader(this.getClass(), "/fop"))
-                                                           .build()
-                                                           .template("test005.ftl")
-                                                           .modelParam("rrn", "1111-2222-3333-4444-5555")
-                                                           .modelParam("dictionary", dictionary)).build());
+     
+        PdfBuilder.foProvider(FreemarkerFoProvider.Builder
+                                                  .templateLoader(new ClassTemplateLoader(this.getClass(), "/fop")).build()
+                                                  .template("test005.ftl")
+                                                  .modelParam("rrn", "1111-2222-3333-4444-5555")
+                                                  .modelParam("dictionary", dictionary))
+                                                  .build(FileUtils.openOutputStream(outputFile));
     }
     
-    private void writePdf(byte [] pdf) throws Exception
+    @Before
+    public void setup()
     {
-        File file = new File("target/generated-pdf/test_" + System.currentTimeMillis() + ".pdf");
-        
-        FileUtils.writeByteArrayToFile(file, pdf);
-        
-        System.out.println(file.getAbsolutePath());
+        outputFile = new File("target/generated-pdf/test_" + System.currentTimeMillis() + ".pdf");
     }
+    
+    @After
+    public void tearDown()
+    {
+        System.out.println(outputFile.getAbsolutePath());
+    }
+    
+    private File outputFile;
     
     @Ignore
     public void test() throws Exception

@@ -37,7 +37,7 @@
             </fo:block-container> 
             <fo:block-container position="absolute" top="281mm" left="16mm">
                 <fo:block color="white">
-                ${fmUtils.processMarkup(dictionary["gdar.general.footerurl"])}
+                ${markupUtils.process(dictionary["gdar.general.footerurl"])}
                 </fo:block>
             </fo:block-container>
             <fo:block-container position="absolute" top="0mm" left="0mm" >
