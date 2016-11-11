@@ -1,0 +1,15 @@
+<?xml version="1.0" standalone="no"?> <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd" > <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+<defs >
+<font id="SourceSansPro" horiz-adv-x="455" ><font-face
+    font-family="Source Sans Pro"
+    units-per-em="1000"
+    panose-1="2 11 5 3 3 4 3 2 2 4"
+    ascent="984"
+    descent="-273"
+    alphabetic="0" />
+<missing-glyph horiz-adv-x="653" d="M89 660H565V0H89V660ZM281 340L154 572V110L281 340ZM498 110V572L372 340L498 110ZM454 58L381 190L329 293H325L271 190L197 58H454ZM329 387L378 481L444 600H209L275 481L325 387H329Z" />
+<glyph unicode="&#xa3;" glyph-name="sterling" horiz-adv-x="497" d="M453 71V0H54V50Q105 78 132 125T160 230Q160 244 158 257T153 285H53V337L120 341H138Q128 373 120 403T111 466Q111 508 124 542T162 600T221 637T297 650Q351 650 388 629T452 575L404
+528Q385 551 361 566T303 581Q249 581 221 549T192 464Q192 432 199 403T216 341H375V285H229Q231 271 232 258T234 229Q234 176 218 141T172 75V71H453Z" />
+</font>
+</defs>
+</svg>
