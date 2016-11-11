@@ -23,9 +23,10 @@ import org.w3c.dom.NamedNodeMap;
 import sandbox.pdfbuilder.util.StaticMap;
 
 @Slf4j
-public class FreemarkerMarkupUtils
+@Deprecated
+public class FreemarkerRegexMarkupUtils
 {
-    private static final FluentList<MarkupHandler> MARKUP_HANDLERS = FluentList.<FreemarkerMarkupUtils.MarkupHandler>with()
+    private static final FluentList<MarkupHandler> MARKUP_HANDLERS = FluentList.<FreemarkerRegexMarkupUtils.MarkupHandler>with()
             .item(new ReplaceAll("(?i)<br[\\s/]*>", "<fo:block linefeed-treatment=\"preserve\" line-height=\"0.5\">&#xA;</fo:block>"))
             .item(new ReplaceAll("(?i)<p>(.*?)</p>", "<fo:block>$1</fo:block>"))
             //.item(new ReplaceAll("(?i)<ul>(.*?)</ul>", "<fo:list-block>$1</fo:list-block>"))

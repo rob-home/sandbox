@@ -2,6 +2,7 @@ package sandbox.pdfbuilder.fo.freemarker;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
@@ -14,8 +15,10 @@ import java.util.Map;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+
+import org.apache.commons.io.FileUtils;
+
 import sandbox.pdfbuilder.PdfBuilderException;
 import sandbox.pdfbuilder.fo.FoProvider;
 import sandbox.pdfbuilder.fo.InputStreamProvider;
@@ -73,7 +76,10 @@ public class FreemarkerFoProvider implements FoProvider
             config.setTemplateLoader(templateLoader);
             config.setDefaultEncoding("UTF-8");
             config.setTemplateExceptionHandler(TemplateExceptionHandler.DEBUG_HANDLER);
-            return FreemarkerFoProvider.config(config).modelHelper("markupUtils", new FreemarkerMarkupUtils()).modelHelper("textUtils", new FreemarkerTextUtils());
+            return FreemarkerFoProvider.config(config)
+                                       .modelHelper("markupUtils", new FreemarkerSaxMarkupUtils())
+                                       .modelHelper("textUtils", new FreemarkerTextUtils())
+                                       .modelHelper("imageUtils", new FreemarkerImageUtils());
         }
     }
     
@@ -97,6 +103,15 @@ public class FreemarkerFoProvider implements FoProvider
         public InputStream getInputStream() throws PdfBuilderException
         {
             byte [] fo = getBytes(this.template);
+            try
+            {
+                FileUtils.writeByteArrayToFile(new File("target/generated-pdf/pdf.fo"), fo);
+                //System.out.println(new String(fo));
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
             if (log.isDebugEnabled()) log.debug(new String(fo));
             return new ByteArrayInputStream(fo);
         }

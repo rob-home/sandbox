@@ -4,12 +4,14 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.batik.svggen.font.Font;
+import org.apache.batik.svggen.font.SvgFontGenerator;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.fop.fonts.apps.TTFReader;
 import org.apache.fop.fonts.truetype.TTFFile;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.w3c.dom.Document;
 
@@ -19,12 +21,6 @@ import freemarker.cache.ClassTemplateLoader;
 
 public class TestPdfBuilder
 {
-    
-    @Test
-    public void createPdfFromXml() throws Exception
-    {
-        PdfBuilder.foProvider(FileFoProvider.with().file("src/test/resources/fop/test005.fo")).build(FileUtils.openOutputStream(outputFile));
-    }
     
     @Test
     public void createPdfFromFreemarker() throws Exception
@@ -55,19 +51,26 @@ public class TestPdfBuilder
     
     private File outputFile;
     
-    @Ignore
+    @Test
     public void test() throws Exception
     {
-        String fontName = "Century Gothic";
-        String fontPath = "src/main/resources/fonts/Century-Gothic-Bold.ttf";
-        String output = "src/main/resources/fonts/Century-Gothic-Bold.xml";
-        
+        String fontName = "Arial";
+        String fileName = "ariali";
+
+        String fontPath = "src/main/resources/fonts/" + fileName + ".ttf";
+        String outputXml = "src/main/resources/fonts/" + fileName + ".xml";
+
+        String glyphFontId = StringUtils.remove(fontName, " ");
+        String outputGlyph = "src/main/resources/fonts/" + fileName + ".svg";
+
+        /* Generate XML font */
         TTFReader ttfReader = new TTFReader();
         TTFFile ttf = ttfReader.loadTTF(fontPath, fontName, true, true);
-        
         Document doc = ttfReader.constructFontXML(ttf, fontName, null, null, null, false, fontName);
-
-        ttfReader.writeFontXML(doc, new File(output));
+        ttfReader.writeFontXML(doc, new File(outputXml));
         
+        /* Generate SVG font */
+        SvgFontGenerator.font(Font.create(fontPath), glyphFontId).lowCharIndex(163).highCharIndex(163).testCard(true).generate(FileUtils.openOutputStream(new File(outputGlyph)));
+
     }
 }

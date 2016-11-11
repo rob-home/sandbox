@@ -13,40 +13,97 @@
 			<groupId>dev.sandbox</groupId>
 			<artifactId>pdf-builder</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.reflections</groupId>
-			<artifactId>reflections</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xmlgraphics</groupId>
-			<artifactId>fop</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.xmlgraphics</groupId>
-			<artifactId>batik-bridge</artifactId>
-		</dependency>
+		</dependency>	
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.10</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.9</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-basics</artifactId>
+            <version>0.6.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jvnet.jaxb2_commons</groupId>
+            <artifactId>jaxb2-fluent-api</artifactId>
+            <version>3.0</version>
+        </dependency>
+        
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-proxy -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-proxy</artifactId>
+            <version>9.4.0.M0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-server -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>9.4.0.M0</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-servlet -->
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>9.4.0.M0</version>
+        </dependency>
+                
 	</dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <configuration>
+                    <schemaDirectory>${project.basedir}/src/main/resources/xsd</schemaDirectory>
+                    <schemaIncludes>
+                        <include>*/*.xsd</include>
+                    </schemaIncludes>
+                    <verbose>true</verbose>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-fluent-api</artifactId>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.jvnet.jaxb2_commons</groupId>
+                            <artifactId>jaxb2-basics</artifactId>
+                        </plugin>
+                    </plugins>
+                    <extension>true</extension>
+                    <verbose>true</verbose>
+                    <strict>true</strict>
+                    <args>
+                        <arg>-npa</arg>
+                        <arg>-Xinheritance</arg>
+                        <arg>-Xfluent-api</arg>
+                    </args>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>changelog31</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generateDirectory>${project.basedir}/target/generated-sources</generateDirectory>
+                            <schemaIncludes>
+                                <include>fo.xsd</include>
+                            </schemaIncludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+    
 </project>

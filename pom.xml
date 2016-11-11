@@ -10,78 +10,20 @@
 		<module>dao-utils</module>
 		<module>pdf-builder</module>
 		<module>test</module>
+		<module>db-export</module>
+		<module>server-client</module>
+		<module>draw</module>
 	</modules>
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>junit</groupId>
-				<artifactId>junit</artifactId>
-				<version>4.9</version>
-				<scope>test</scope>
-			</dependency>
-			<dependency>
-				<groupId>commons-io</groupId>
-				<artifactId>commons-io</artifactId>
-				<version>2.4</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.commons</groupId>
-				<artifactId>commons-lang3</artifactId>
-				<version>3.4</version>
-			</dependency>
-			<dependency>
-				<groupId>org.springframework</groupId>
-				<artifactId>spring-core</artifactId>
-				<version>2.5.6</version>
-			</dependency>
-			<dependency>
-				<groupId>org.reflections</groupId>
-				<artifactId>reflections</artifactId>
-				<version>0.9.10</version>
-			</dependency>
-			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>1.12.2</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.xmlgraphics</groupId>
-				<artifactId>fop</artifactId>
-				<version>2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.xmlgraphics</groupId>
-				<artifactId>xmlgraphics-commons</artifactId>
-				<version>2.1</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.xmlgraphics</groupId>
-				<artifactId>batik-bridge</artifactId>
-				<version>1.8</version>
-			</dependency>
-			<dependency>
-				<groupId>org.freemarker</groupId>
-				<artifactId>freemarker</artifactId>
-				<version>2.3.23</version>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.12.2</version>
+        </dependency>
+    </dependencies>
 	
-	<dependencies>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<version>1.7.12</version>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>1.7.12</version>
-		</dependency>	
-	</dependencies>
-
-	<build>
+    <build>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

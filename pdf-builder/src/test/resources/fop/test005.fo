@@ -41,7 +41,7 @@
                 </fo:block>
             </fo:block-container> 
             <fo:block-container  position="absolute" top="18mm" left="16mm" width="150mm">
-                <fo:block font-family="Aharoni" font-size="23pt" color="#2d6d1f" font-weight="bold">
+                <fo:block font-family="Aharoni" font-size="23pt" color="${dictionary["style.green"]}" font-weight="bold">
                     Green Deal Advice Report
                 </fo:block>
             </fo:block-container>
