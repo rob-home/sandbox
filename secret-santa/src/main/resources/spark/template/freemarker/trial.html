@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<script src="/jquery/dist/jquery.min.js"></script>
+<script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+<script src="/angular/angular.min.js"></script>
+<script src="/angular-animate/angular-animate.min.js"></script>
+<script src="/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="/angular-ui-bootstrap/ui-bootstrap-tpls-1.2.4.min.js"></script>
+
+<body>
+<div class="container">
+    <h1>Test Page</h1>
+    <div ng-app="secretSantaApp" ng-controller="secretSantaCtrl">
+      <p uib-tooltip="{{tooltip}}">Name: <input type="text" ng-model="name"></p>
+      <p ng-hide="!name"> Hello {{name}}</p>
+      
+    </div>
+</div>
+
+<script>
+var app = angular.module("secretSantaApp", []);
+app.controller("secretSantaCtrl", function($scope) {
+    $scope.tootTip = "TEST";
+});
+</script>
+
+</body>
+</html>

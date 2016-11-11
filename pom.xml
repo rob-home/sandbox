@@ -13,6 +13,7 @@
 		<module>db-export</module>
 		<module>server-client</module>
 		<module>draw</module>
+		<module>secret-santa</module>
 	</modules>
 
     <dependencies>
