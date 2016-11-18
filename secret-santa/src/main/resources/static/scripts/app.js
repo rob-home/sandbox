@@ -5,6 +5,7 @@ angular.module('Authentication', []);
 angular.module('Home', []);
 
 angular.module('BasicHttpAuthExample', [
+    'directives',
     'Authentication',
     'Home',
     'ngRoute',
@@ -42,4 +43,5 @@ angular.module('BasicHttpAuthExample', [
                 $location.path('/login');
             }
         });
-    }]);
+    }])
+;

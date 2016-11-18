@@ -1,0 +1,182 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style> 
+body
+{
+background-color: #6b92b9;
+}
+#container 
+{ 
+position: absolute;
+top: 0; left: 0; bottom: 0; right: 0;
+width: 600px;
+height: 400px;
+display: block;
+margin: auto;
+}
+#layout1, #layout2, #layout3
+{
+position:absolute;
+}
+#canvas1
+{
+    border: 12px solid transparent;
+    
+}
+#canvas3
+{
+    border: 12px solid white;
+}
+#font1
+{
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color : white;
+}
+</style> 
+<script>
+window.onload = function()
+{
+   //setup1();
+   //setup2();
+   setup3();
+}
+function setup1()
+{
+    var canvas = document.getElementById("canvas1");
+    var ctx = canvas.getContext("2d");
+
+    var W = canvas.width;
+    var H = canvas.height;
+
+    ctx.fillStyle = '#333344';
+    ctx.fillRect(0, 0, W, H);
+}
+function setup2()
+{
+    var canvas = document.getElementById("canvas2");
+    var ctx = canvas.getContext("2d");
+
+    var W = canvas.width;
+    var H = canvas.height;
+
+    ctx.textAlign="center";
+    ctx.fillStyle="white";
+
+    ctx.font="60px Comic Sans MS";
+    ctx.fillText("Secret Santa", W/2, 100);
+
+    ctx.font="35px Comic Sans MS";
+    ctx.fillText("Hi Rob", W/2, 200);
+    ctx.fillText("To find out who you are getting", W/2, 250);
+    ctx.fillText("a present for hold your mouse", W/2, 300);
+    ctx.fillText("pointer over this message.", W/2, 350);
+    
+}
+function setup3()
+{
+    var canvas = document.getElementById("canvas3");
+    var ctx = canvas.getContext("2d");
+    
+    //canvas dimensions
+    var W = canvas.width;
+    var H = canvas.height;
+    
+    //snowflake particles
+    var mp = 250; //max particles
+    var particles = [];
+    for(var i = 0; i < mp; i++)
+    {
+        particles.push({
+            x: Math.random()*W, //x-coordinate
+            y: Math.random()*H, //y-coordinate
+            r: Math.random()*3+1, //radius
+            d: Math.random()*mp //density
+        })
+    }
+    
+    //Lets draw the flakes
+    function draw()
+    {
+        ctx.clearRect(0, 0, W, H);
+        
+        ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+        ctx.beginPath();
+        for(var i = 0; i < mp; i++)
+        {
+            var p = particles[i];
+            ctx.moveTo(p.x, p.y);
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
+        }
+        ctx.fill();
+        update();
+    }
+    
+    //Function to move the snowflakes
+    //angle will be an ongoing incremental flag. Sin and Cos functions will be applied to it to create vertical and horizontal movements of the flakes
+    var angle = 0;
+    function update()
+    {
+        angle += 0.01;
+        for(var i = 0; i < mp; i++)
+        {
+            var p = particles[i];
+            //Updating X and Y coordinates
+            //We will add 1 to the cos function to prevent negative values which will lead flakes to move upwards
+            //Every particle has its own density which can be used to make the downward movement different for each flake
+            //Lets make it more random by adding in the radius
+            p.y += Math.cos(angle+p.d) + 1 + p.r/2;
+            p.x += Math.sin(angle) * 2;
+            
+            //Sending flakes back from the top when it exits
+            //Lets make it a bit more organic and let flakes enter from the left and right also.
+            if(p.x > W+5 || p.x < -5 || p.y > H)
+            {
+                if(i%3 > 0) //66.67% of the flakes
+                {
+                    particles[i] = {x: Math.random()*W, y: -10, r: p.r, d: p.d};
+                }
+                else
+                {
+                    //If the flake is exitting from the right
+                    if(Math.sin(angle) > 0)
+                    {
+                        //Enter from the left
+                        particles[i] = {x: -5, y: Math.random()*H, r: p.r, d: p.d};
+                    }
+                    else
+                    {
+                        //Enter from the right
+                        particles[i] = {x: W+5, y: Math.random()*H, r: p.r, d: p.d};
+                    }
+                }
+            }
+        }
+    }
+    
+    //animation loop
+    setInterval(draw, 33);
+}
+</script>
+</head> 
+<body> 
+    <div id="container"> 
+        <div id="layout1">
+            <div id="layout3">
+                <canvas id="canvas1" width="600px" height="400px">
+                Your browser does not support the HTML5 canvas tag.
+                </canvas>
+            </div>
+            <div id="layout3">
+                <canvas id="canvas2" width="600px" height="400px">
+                Your browser does not support the HTML5 canvas tag.
+                </canvas>
+            </div>
+            <div id="layout3" title="You are getting a present for ...">
+                <canvas id="canvas3" width="600px" height="400px">
+                Your browser does not support the HTML5 canvas tag.
+                </canvas>
+            </div>
+    </div> 
+</body> 
+</html>      

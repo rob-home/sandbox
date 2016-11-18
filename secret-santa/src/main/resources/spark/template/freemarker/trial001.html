@@ -4,12 +4,22 @@
   <head>
     <meta charset="utf-8" />
     <title>AngularJS Basic HTTP Authentication Example</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <script src="/angular/angular.min.js"></script>
+    <script src="/angular-route/angular-route.js"></script>
+    <script src="/angular-cookies/angular-cookies.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="modules/directive/snow.js"></script>
+    <script src="modules/authentication/services.js"></script>
+    <script src="modules/authentication/controllers.js"></script>
+    <script src="modules/home/controllers.js"></script>
   </head>
 
   <body>
   
-    <div class="jumbotron">
+    <div class="jumbotron ng-snow">
       <div class="container">
         <div class="col-xs-offset-2 col-xs-8">
           <div ng-view></div>
@@ -26,16 +36,8 @@
       </p>
     </div>
 
-    <script src="/jquery/dist/jquery.min.js"></script>
-    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-    <script src="/angular/angular.min.js"></script>
-    <script src="/angular-route/angular-route.js"></script>
-    <script src="/angular-cookies/angular-cookies.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="modules/authentication/services.js"></script>
-    <script src="modules/authentication/controllers.js"></script>
-    <script src="modules/home/controllers.js"></script>
+    <login/>
+
   </body>
 
 </html>
