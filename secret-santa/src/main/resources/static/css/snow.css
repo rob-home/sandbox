@@ -1,0 +1,10 @@
+#snow
+{
+    display: block;
+    width: 100%;
+    height: auto;
+}
+.layer
+{
+    position: absolute;
+}

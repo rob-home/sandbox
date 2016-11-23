@@ -28,11 +28,19 @@ public class ConfigCache
                         .setListDelimiterHandler(new DefaultListDelimiterHandler(',')));
     }
     
+    public Object get(String key) throws ConfigurationException {
+        return getConfig().containsKey(key) ? getConfig().getProperty(key) : "";
+    }
+    
     @Synchronized
     public Configuration getConfig() throws ConfigurationException {
         return builder.getConfiguration();
     }
 
+    public String setValue(String key, String value) throws ConfigurationException {
+        return setConfiguration(key, value).getString(key);
+    }
+    
     @Synchronized
     public Configuration setConfiguration(String key, Object value) throws ConfigurationException {
         builder.getConfiguration().setProperty(key, value);
