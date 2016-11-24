@@ -7,9 +7,5 @@ angular.module('Home')
     function ($http, $rootScope) {
         var service = {};
 
-        service.logout = function () {
-        	$http.get('/logout');
-        };
-        
         return service;
 }]); 
