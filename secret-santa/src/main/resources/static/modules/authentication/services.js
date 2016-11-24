@@ -17,5 +17,6 @@ angular.module('Authentication')
             	  callback(response);
               });
         };
+        
         return service;
 }]); 

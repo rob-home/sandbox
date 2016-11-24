@@ -28,4 +28,16 @@ angular.module('SimpleServer', [
         })
  
         .otherwise({ redirectTo: '/login' });
+}])
+
+.run(['$rootScope', '$location', '$cookieStore', '$http',
+    function ($rootScope, $location, $cookieStore, $http) {
+        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        	$http.get('/validate').then(function(response){
+        	},
+        	function(response){
+        		//event.preventDefault();
+        		$location.path('/login')
+        	});
+        });
 }]);
