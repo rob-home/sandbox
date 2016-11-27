@@ -33,6 +33,7 @@ angular.module('SimpleServer', [
 .run(['$rootScope', '$location', '$cookieStore', '$http',
     function ($rootScope, $location, $cookieStore, $http) {
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        return;
         	$http.get('/validate').then(function(response){
         	},
         	function(response){

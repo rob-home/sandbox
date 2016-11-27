@@ -1,0 +1,21 @@
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+.gi-red{color: red;}
+
+@font-face {
+    font-family: "ChristmasSnow";
+    src: url(../fonts/ChristmasSnow.ttf) format("truetype");
+}
+.christmasSnow { 
+    font-family: "ChristmasSnow", Verdana, Tahoma;
+}
+
+@font-face {
+    font-family: "BigSecret";
+    src: url(../fonts/BigSecret.ttf) format("truetype");
+}
+.bigSecret { 
+    font-family: "BigSecret", Verdana, Tahoma;
+}
