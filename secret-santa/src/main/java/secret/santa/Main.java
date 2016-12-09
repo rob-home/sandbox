@@ -15,6 +15,7 @@ import java.util.Map;
 import javax.crypto.EncryptedPrivateKeyInfo;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import secret.santa.ConfigCache.UserConfig;
 import spark.ModelAndView;
@@ -104,15 +105,31 @@ public class Main
         });
         
         get("/userdata", (req, res) -> {
-            return ""; 
+            UserConfig user = config.getUser(req.session().attribute("username"));
+            return new Gson().toJson(FluentMap.<String, String>with().keyValue("vote", "" + user.vote())); 
         });
          
         post("/userdata", (req, res) -> {
+            Map<String, String> data = jsonToMap(req.body());
+            System.out.println(data);
+            config.setUser(config.getUser(req.session().attribute("username")).vote(NumberUtils.toInt(data.get("vote"), 0)));
             return ""; 
         });
          
-        post("/reset/password", (req, res) -> {
-            return "";
+        post("/change/password", (req, res) -> {
+            Map<String, String> data = jsonToMap(req.body());
+            String pwd1 = data.get("password1");
+            String pwd2 = data.get("password2");
+            
+            res.status(400);
+            if (StringUtils.isBlank(pwd1)) return "Missing password";
+            if (StringUtils.isBlank(pwd2)) return "Missing re-entered password";
+            if (!pwd1.equals(pwd2)) return "Passwords do not match";
+            if (StringUtils.isBlank(req.session().attribute("username"))) return "Invalid user";
+
+            config.setUser(config.getUser(req.session().attribute("username")).password(Encryption.hash(pwd1)));
+            res.status(200);
+            return "Password updated";
         });
     }
 
