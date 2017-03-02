@@ -35,6 +35,11 @@
             <artifactId>jaxb2-fluent-api</artifactId>
             <version>3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.javassist</groupId>
+            <artifactId>javassist</artifactId>
+            <version>3.19.0-GA</version>
+        </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.eclipse.jetty/jetty-proxy -->
         <dependency>
@@ -54,7 +59,19 @@
             <artifactId>jetty-servlet</artifactId>
             <version>9.4.0.M0</version>
         </dependency>
-                
+        <!-- https://mvnrepository.com/artifact/org.xhtmlrenderer/flying-saucer-pdf -->
+        <dependency>
+            <groupId>org.xhtmlrenderer</groupId>
+            <artifactId>flying-saucer-pdf</artifactId>
+            <version>9.1.1</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
+
 	</dependencies>
 
     <build>

@@ -82,6 +82,7 @@ public class PdfBuilder
             fopFactoryBuilder.setComplexScriptFeatures(false); // Disable ligature in fonts
             FopFactory fopFactory = fopFactoryBuilder.build(); 
             
+            
             //FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
             FOUserAgent foUserAgent = new LocalFOUserAgent(fopFactory, ResourceResolverFactory.createInternalResourceResolver(fopFactoryBuilder.buildConfig().getBaseURI(), fopFactoryBuilder.buildConfig().getResourceResolver()));
             foUserAgent.getRendererOptions().put("encryption-params", pdfEncryption.getEncryptionParam());

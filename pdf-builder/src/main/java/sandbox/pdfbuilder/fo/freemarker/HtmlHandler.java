@@ -115,7 +115,7 @@ public class HtmlHandler extends DefaultHandler
 
         A("<fo:basic-link %s>", 
           "</fo:basic-link>", 
-          AttrMap.with().attr("href", FoAttr.attrFormat("external-destination=\"uri('%s')\""))), 
+          AttrMap.with().attr("href", FoAttr.attrFormat("external-destination=\"url('%s')\""))), 
 
         P("<fo:block>", 
           "</fo:block>", 

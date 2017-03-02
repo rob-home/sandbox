@@ -28,13 +28,20 @@ public class TestPdfBuilder
         Map<String, String> dictionary = new HashMap<>();
         
         dictionary.put("gdar.general.footerurl", "<a href=\"#\">gov.uk/greendeal</a>");
+        dictionary.put("style", "<a href=\"#\">gov.uk/greendeal</a>");
      
-        PdfBuilder.foProvider(FreemarkerFoProvider.Builder
-                                                  .templateLoader(new ClassTemplateLoader(this.getClass(), "/fop")).build()
-                                                  .template("test005.ftl")
-                                                  .modelParam("rrn", "1111-2222-3333-4444-5555")
-                                                  .modelParam("dictionary", dictionary))
-                                                  .build(FileUtils.openOutputStream(outputFile));
+        try {
+            PdfBuilder.foProvider(FreemarkerFoProvider.Builder
+                    .templateLoader(new ClassTemplateLoader(this.getClass(), "/fop")).build()
+                    .template("test005.ftl")
+                    .modelParam("rrn", "1111-2222-3333-4444-5555")
+                    .modelParam("dictionary", dictionary))
+                    .build(FileUtils.openOutputStream(outputFile));
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
     
     @Before
